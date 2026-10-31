@@ -15,9 +15,17 @@ Shikisha solves a critical vulnerability in machine learning deployments: **an o
 In Shikisha:
 1. **Pre-Registration**: The operator commits an ONNX model's cryptographic hash (`modelCommitment = sha256(model.onnx)`) on-chain before inference occurs.
 2. **Execution Receipts**: Inferences produce structured cryptographic receipts linking `(modelCommitment, inputHash, output, proofHash, proofStatus)`.
-3. **Verifiable Proving**: Inferences are proven using the **Jolt Atlas** zkML framework, generating integrity proofs directly over ONNX computations.
-4. **Decentralized Workflow**: A **Chainlink Runtime Environment (CRE)** workflow fetches the receipt, evaluates proof validity via an off-chain verifier service, validates allowlists, reaches DON consensus, and writes an attestation to the on-chain registry.
+3. **Verifiable Proving**: Inferences are proven using the [**Jolt Atlas**](https://github.com/ICME-Lab/jolt-atlas) zkML framework (forked and specialized from [**a16z Jolt**](https://github.com/a16z/jolt)), generating integrity proofs directly over ONNX computations.
+4. **Decentralized Workflow**: A [**Chainlink Runtime Environment (CRE)**](https://docs.chain.link/cre) workflow fetches the receipt, evaluates proof validity via an off-chain verifier service, validates allowlists, reaches DON consensus, and writes an attestation to the on-chain registry.
 5. **First-Write-Wins Immutability**: The smart contract enforces first-write-wins per `(modelCommitment, inputHash)`. Once a decision is recorded for an input, subsequent attempts to rewrite history revert.
+
+---
+
+## Core Technologies & References
+
+- [**Jolt Atlas (ICME-Lab)**](https://github.com/ICME-Lab/jolt-atlas): Zero-knowledge machine learning framework specialized for ONNX graphs using lookup arguments and sumcheck protocols.
+- [**Jolt (a16z crypto)**](https://github.com/a16z/jolt): The foundational lookup-centric zkVM architecture designed for high-performance proving without traditional arithmetic circuits.
+- [**Chainlink Runtime Environment (CRE)**](https://docs.chain.link/cre): The decentralized compute orchestration runtime connecting off-chain data sources, verifiable proving services, and on-chain smart contracts.
 
 ---
 
@@ -25,32 +33,32 @@ In Shikisha:
 
 ```mermaid
 flowchart TD
-    subgraph Client / Operator
-        Input[Raw Legal Clause Text] --> Feat[Deterministic Bag-of-Keywords Featurizer]
-        Feat --> InputHash[inputHash = sha256(feature_vector)]
-        Feat --> Model[Tiny ONNX Model]
-        Model --> Infer[Binary Risk Decision]
-        Model --> Commit[modelCommitment = sha256(ONNX bytes)]
-        Infer & Commit & InputHash --> Prover[Jolt Atlas Prover]
-        Prover --> Receipt[Receipt JSON]
+    subgraph Client["Client / Operator"]
+        Input["Raw Legal Clause Text"] --> Feat["Deterministic Bag-of-Keywords Featurizer"]
+        Feat --> InputHash["inputHash = sha256(feature_vector)"]
+        Feat --> Model["Tiny ONNX Model"]
+        Model --> Infer["Binary Risk Decision"]
+        Model --> Commit["modelCommitment = sha256(ONNX bytes)"]
+        Infer & Commit & InputHash --> Prover["Jolt Atlas Prover"]
+        Prover --> Receipt["Receipt JSON"]
     end
 
-    subgraph Off-Chain Verifier & Hosting
-        Receipt --> ReceiptHost[Receipt Endpoint: /receipt/:id]
-        Receipt --> VerifierSvc[Verifier HTTP Service: /verify]
+    subgraph OffChain["Off-Chain Verifier & Hosting"]
+        Receipt --> ReceiptHost["Receipt Endpoint: /receipt/:id"]
+        Receipt --> VerifierSvc["Verifier HTTP Service: /verify"]
     end
 
-    subgraph Chainlink CRE Workflow
-        ReceiptHost -->|HTTP GET| CRE[CRE Simulation / DON Node Consensus]
-        CRE -->|HTTP POST| VerifierSvc
-        VerifierSvc -->|Verification Status| CRE
-        CRE -->|Verify Allowlist & Consensus| CRE
+    subgraph Workflow["Chainlink CRE Workflow"]
+        ReceiptHost -->|"HTTP GET"| CRE["CRE Simulation / DON Consensus"]
+        CRE -->|"HTTP POST"| VerifierSvc
+        VerifierSvc -->|"Verification Status"| CRE
+        CRE -->|"Verify Allowlist & Consensus"| CRE
     end
 
-    subgraph On-Chain EVM (Registry.sol)
-        Commit -->|registerModel| RegModel[(Registered Models)]
-        CRE -->|attest(commitment, inputHash, output, proofHash, status)| RegAttest[(Attestations: First-Write-Wins)]
-        RegAttest -.->|Duplicate Input Attempt| Revert[REVERT: AlreadyAttested]
+    subgraph OnChain["On-Chain EVM (Registry.sol)"]
+        Commit -->|"registerModel"| RegModel[("Registered Models")]
+        CRE -->|"attest(commitment, inputHash, ...)"| RegAttest[("Attestations: First-Write-Wins")]
+        RegAttest -.->|"Duplicate Input Attempt"| Revert["REVERT: AlreadyAttested"]
     end
 ```
 
