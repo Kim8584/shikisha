@@ -1,0 +1,11 @@
+{
+  "schedule": "0 * * * *",
+  "receiptUrl": "http://127.0.0.1:8080/receipt/1",
+  "verifierUrl": "http://127.0.0.1:8080/verify",
+  "registryAddress": "0x0000000000000000000000000000000000000000",
+  "allowedModelCommitments": [
+    "0x12ba895783aa2a61554d635d25d0ff7f671b22a58b8b33a15efa35b123ad141c"
+  ],
+  "chainSelectorName": "ethereum-testnet-sepolia",
+  "gasLimit": "500000"
+}

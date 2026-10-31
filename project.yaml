@@ -1,0 +1,12 @@
+# ==========================================================================
+# CRE PROJECT SETTINGS FILE
+# ==========================================================================
+local-settings:
+  rpcs:
+    - chain-name: local-anvil
+      url: http://127.0.0.1:8545
+
+staging-settings:
+  rpcs:
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com

@@ -1,0 +1,11 @@
+{
+  "id": "sample_2_medium_risk",
+  "description": "Confidentiality and Dispute Governing Clause (Medium Risk)",
+  "modelCommitment": "0x12ba895783aa2a61554d635d25d0ff7f671b22a58b8b33a15efa35b123ad141c",
+  "inputHash": "0x1a64208c52600ba4363ee465f09789be2d664e61da0ea358093479bf0148598e",
+  "output": 0,
+  "proofHash": "0x28b551af8dfa6d78d977357c12bfd41964ba7aef7d668f44174b994a2daf8d7b",
+  "proofStatus": "GENERATED_VERIFIED",
+  "timestamp": 1793433951,
+  "proofURI": "prover/out/proof_sample_2_medium_risk.log"
+}

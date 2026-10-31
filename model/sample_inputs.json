@@ -1,0 +1,80 @@
+[
+  {
+    "id": "sample_1_low_risk",
+    "description": "Standard Severability Clause (Low Risk)",
+    "clause_text": "If any provision of this Agreement is held to be invalid or unenforceable, such provision shall be severed and the remaining provisions shall continue in full force and effect.",
+    "features": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "inputHash": "0xfbeb8ead4590a23174d701bb8d7cd24f87d6f73a297034bbf6291b7b82bbb9f3",
+    "raw_score": 1.4902,
+    "output": 1
+  },
+  {
+    "id": "sample_2_medium_risk",
+    "description": "Confidentiality and Dispute Governing Clause (Medium Risk)",
+    "clause_text": "Each party shall hold all confidential information in strict trust. Any dispute arising under this Agreement shall be settled by binding arbitration in accordance with the governing law.",
+    "features": [
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      2.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "inputHash": "0x1a64208c52600ba4363ee465f09789be2d664e61da0ea358093479bf0148598e",
+    "raw_score": -0.0947,
+    "output": 0
+  },
+  {
+    "id": "sample_3_high_risk",
+    "description": "Unlimited Indemnity and Consequential Damages Clause (High Risk)",
+    "clause_text": "The Vendor shall unconditionally indemnify, defend and hold harmless the Client against all liability, damages, breach of contract, negligence, penalties, and default without any monetary limitation.",
+    "features": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "inputHash": "0xbe183af1b510765661ba89e628cc385d0589fbce70355ee021919f6f0fc3844f",
+    "raw_score": 11.5421,
+    "output": 1
+  }
+]

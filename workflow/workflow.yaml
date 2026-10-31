@@ -1,0 +1,18 @@
+# ==========================================================================
+# CRE WORKFLOW SETTINGS FILE: Shikisha Attestation Workflow
+# ==========================================================================
+local-settings:
+  user-workflow:
+    workflow-name: "shikisha-attestation-workflow"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.local.json"
+    secrets-path: ""
+
+staging-settings:
+  user-workflow:
+    workflow-name: "shikisha-attestation-workflow-staging"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.staging.json"
+    secrets-path: ""

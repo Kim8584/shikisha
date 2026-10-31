@@ -1,0 +1,19 @@
+================================================================================
+CHAINLINK CRE SIMULATION OUTPUT RECORD
+Command: ./bin/cre workflow simulate ./workflow --target=local-settings --non-interactive
+Date: Sat Oct 31 12:32:00 2026
+CRE CLI Version: v1.39.0
+================================================================================
+
+Initializing...
+
+! You are not logged in
+
+Would you like to login now? [y/N] 
+
+Error: authentication required to simulate workflow.
+To run the simulation interactively or via CI:
+  1. Run `./bin/cre login` OR export CRE_API_KEY="<api-key>" (from https://app.chain.link)
+  2. Run `./bin/cre workflow simulate ./workflow --target=local-settings`
+
+================================================================================

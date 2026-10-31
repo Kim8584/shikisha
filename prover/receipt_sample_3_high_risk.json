@@ -1,0 +1,11 @@
+{
+  "id": "sample_3_high_risk",
+  "description": "Unlimited Indemnity and Consequential Damages Clause (High Risk)",
+  "modelCommitment": "0x12ba895783aa2a61554d635d25d0ff7f671b22a58b8b33a15efa35b123ad141c",
+  "inputHash": "0xbe183af1b510765661ba89e628cc385d0589fbce70355ee021919f6f0fc3844f",
+  "output": 1,
+  "proofHash": "0xdf5f57a6b8b102761f7fc1f08ac55c644d9a9743dbe3e19ea63b0b4de7367a71",
+  "proofStatus": "GENERATED_VERIFIED",
+  "timestamp": 1793433951,
+  "proofURI": "prover/out/proof_sample_3_high_risk.log"
+}
